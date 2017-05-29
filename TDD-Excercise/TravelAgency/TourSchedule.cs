@@ -8,9 +8,9 @@ namespace TravelAgency
 {
     public class TourSchedule
     {
-        private string Name { get; set; }
-        private DateTime DateOfTheTour { get; set; }
-        private int AvailableNumberOfSeats { get; set; }
+        public string Name { get; set; }
+        public DateTime DateOfTheTour { get; set; }
+        public int AvailableNumberOfSeats { get; set; }
 
         //public TourSchedule(string _name, DateTime _dateOfTheTour, int _availableNumberOfSeats)
         //{
@@ -36,12 +36,7 @@ namespace TravelAgency
 
         public List<TourSchedule> GetToursFor(DateTime inDateTime)
         {
-            if (inDateTime.Date == null)
-            {
-
-            }
-            var result = TourCalendar.FindAll(x=>x.DateOfTheTour == inDateTime.Date);
-            return result;
+            return TourCalendar.Where(x => x.DateOfTheTour.Date == inDateTime.Date).ToList();
         }
     }
 }

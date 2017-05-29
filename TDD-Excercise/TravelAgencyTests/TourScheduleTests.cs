@@ -11,7 +11,13 @@ namespace TravelAgencyTests
     [TestFixture]
     public class TourScheduleTests
     {
-        TourSchedule sut = new TourSchedule();
+        private TourSchedule sut;
+
+        [SetUp]
+        public void Setup()
+        {
+            sut = new TourSchedule();
+        }
 
         [Test]
         public void CanCreateNewTour()
@@ -37,7 +43,15 @@ namespace TravelAgencyTests
         [Test]
         public void ToursAreScheduledByDateOnly()
         {
-            
+            sut.CreateTour(
+                "New years day safari",
+                new DateTime(2013, 1, 1, 10, 15, 0), 20);
+
+            var result = sut.GetToursFor(new DateTime(2013, 1, 1));
+            var expected = new DateTime(2013, 1, 1);
+
+            Assert.AreEqual(expected, result[0].DateOfTheTour.Date);
+
         }
     }
 }
