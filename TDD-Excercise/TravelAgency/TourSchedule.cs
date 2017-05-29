@@ -10,27 +10,31 @@ namespace TravelAgency
     {
         public string Name { get; set; }
         public DateTime DateOfTheTour { get; set; }
-        public int AvailableNumberOfSeats { get; set; }
-
-        //public TourSchedule(string _name, DateTime _dateOfTheTour, int _availableNumberOfSeats)
-        //{
-        //    Name = _name;
-        //    DateOfTheTour = _dateOfTheTour;
-        //    AvailableNumberOfSeats = _availableNumberOfSeats;
-        //}
+        public int AvailableNumberOfSeats { get; set; } 
 
         private List<TourSchedule> TourCalendar = new List<TourSchedule>();
         
         public void CreateTour(string name, DateTime dateOfTheTour, int availableNumberOfSeats)
         {
-            var newTour = new TourSchedule()
-            {
-                Name = name,
-                DateOfTheTour = dateOfTheTour,
-                AvailableNumberOfSeats = availableNumberOfSeats
-            };
 
-            TourCalendar.Add(newTour);
+            var result = TourCalendar.Count(x => x.DateOfTheTour.Date == dateOfTheTour.Date);
+
+            if (result >= 3)
+            {
+                throw new TourAllocationException(dateOfTheTour.AddDays(1).Date);
+            }
+            else
+            {
+                var newTour = new TourSchedule()
+                {
+                    Name = name,
+                    DateOfTheTour = dateOfTheTour,
+                    AvailableNumberOfSeats = availableNumberOfSeats
+                };
+
+                TourCalendar.Add(newTour);
+            } 
+            
 
         }
 
