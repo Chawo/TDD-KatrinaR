@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace TravelAgency
 {
-    public class TourSchedule
+    public class TourSchedule : ITourSchedule
     {
         public string Name { get; set; }
         public DateTime DateOfTheTour { get; set; }

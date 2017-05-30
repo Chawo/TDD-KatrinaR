@@ -88,4 +88,11 @@ namespace TravelAgencyTests
 
         }
     }
+
+    [TestFixture]
+    public class BookingSystemTests
+    {
+        private ITourSchedule;
+
+    }
 }
