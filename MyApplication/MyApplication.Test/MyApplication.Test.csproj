@@ -4,15 +4,17 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{7DC1DB8E-89C8-43C5-A5E3-82893EC3D69F}</ProjectGuid>
-    <OutputType>Library</OutputType>
+    <ProjectGuid>{E05331AB-46DD-432D-92E7-3E988C67A5A5}</ProjectGuid>
+    <OutputType>Exe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Calculator.Test</RootNamespace>
-    <AssemblyName>Calculator.Test</AssemblyName>
+    <RootNamespace>MyApplication.Test</RootNamespace>
+    <AssemblyName>MyApplication.Test</AssemblyName>
     <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
+    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
@@ -22,6 +24,7 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
     <DebugType>pdbonly</DebugType>
     <Optimize>true</Optimize>
     <OutputPath>bin\Release\</OutputPath>
@@ -44,16 +47,17 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="myCalculatorTest.cs" />
+    <Compile Include="BankTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="App.config" />
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Calculator\Calculator.csproj">
-      <Project>{fb0a66fb-89fd-412a-a400-c402407d18a8}</Project>
-      <Name>Calculator</Name>
+    <ProjectReference Include="..\MyApplication\MyApplication.csproj">
+      <Project>{a4444fd7-5137-413c-bb6e-36562ed20141}</Project>
+      <Name>MyApplication</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

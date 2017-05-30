@@ -25,6 +25,10 @@ namespace ValidationEngine
 
         public bool ValidAdress()
         {
+            if (string.IsNullOrEmpty(email))
+            {
+                return false;
+            }
             return Regex.IsMatch(email,
               @"^(?("")(""[^""]+?""@)|(([0-9a-zA-Z]((\.(?!\.))|[-!#\$%&'\*\+/=\?\^`\{\}\|~\w])*)(?<=[0-9a-zA-Z])@))" +
               @"(?(\[)(\[(\d{1,3}\.){3}\d{1,3}\])|(([0-9a-zA-Z][-\w]*[0-9a-zA-Z]\.)+[a-zA-Z]{2,6}))$");

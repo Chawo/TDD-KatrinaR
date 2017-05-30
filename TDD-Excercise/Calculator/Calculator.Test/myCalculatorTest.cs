@@ -37,5 +37,22 @@ namespace Calculator.Test
             var number = sut.Add(addNumbers);
             Assert.AreEqual(expected, number);
         }
+
+        [Test]
+        [TestCase(6, "1\n2,3")]
+        [TestCase(1, "1,\n")]
+        [TestCase(8, "1,\n,\r,3\n,4")]
+        public void TestDiffrentWithoutCommas(int expected, string addNumbers)
+        {
+            var number = sut.Add(addNumbers);
+            Assert.AreEqual(expected, number);
+        }
+
+        [TestCase(3, "//;\n1;2")]
+        public void MakeSemiColonDefaultDelimiter(int expected, string addNumbers)
+        {
+            var number = sut.Add(addNumbers);
+            Assert.AreEqual(expected, number);
+        }
     }
 }

@@ -38,7 +38,7 @@ namespace ValidationEngineTests
         [Test]
         public void SendingInNullValidation()
         {
-            string EmailAdress = "";
+            string EmailAdress = null;
 
             var sut = new emailAdress(EmailAdress);
 
