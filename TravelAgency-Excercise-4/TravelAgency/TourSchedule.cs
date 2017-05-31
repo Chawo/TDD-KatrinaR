@@ -7,13 +7,9 @@ using System.Threading.Tasks;
 namespace TravelAgency
 {
     public class TourSchedule : ITourSchedule
-    {
-        public string Name { get; set; }
-        public DateTime DateOfTheTour { get; set; }
-        public int AvailableNumberOfSeats { get; set; }
-
-        private List<TourSchedule> TourCalendar = new List<TourSchedule>();
-
+    { 
+        private List<Tour> TourCalendar = new List<Tour>();
+         
         public void CreateTour(string name, DateTime dateOfTheTour, int availableNumberOfSeats)
         {
 
@@ -25,7 +21,7 @@ namespace TravelAgency
             }
             else
             {
-                var newTour = new TourSchedule()
+                var newTour = new Tour()
                 {
                     Name = name,
                     DateOfTheTour = dateOfTheTour,
@@ -38,7 +34,7 @@ namespace TravelAgency
 
         }
 
-        public List<TourSchedule> GetToursFor(DateTime inDateTime)
+        public List<Tour> GetToursFor(DateTime inDateTime)
         {
             return TourCalendar.Where(x => x.DateOfTheTour.Date == inDateTime.Date).ToList();
         }
