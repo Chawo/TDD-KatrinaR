@@ -10,7 +10,10 @@ namespace TravelAgency
     {
         private string name { get; set; }
         private DateTime dateOfTheTour { get; set; }
+        private int seats { get; set; }
         private Passenger passenger { get; set; }
+
+        private ITourSchedule tourSchedule;
 
         private List<BookingSystem> ListOfBooking = new List<BookingSystem>();
 
@@ -28,6 +31,12 @@ namespace TravelAgency
             set { dateOfTheTour = value; }
         }
 
+        public int Seats
+        {
+            get { return seats; }
+            set { seats = value; }
+        }
+
         public Passenger Passenger
         {
             get { return passenger; }
@@ -36,7 +45,7 @@ namespace TravelAgency
 
         public BookingSystem(ITourSchedule ItourSchedule)
         {
-            // Taking in Interface
+            tourSchedule = ItourSchedule;
         }
 
         public BookingSystem()
@@ -44,25 +53,33 @@ namespace TravelAgency
             
         }
 
-        public BookingSystem(string name, DateTime dateTime, Passenger passenger)
+        public BookingSystem(string name, DateTime dateTime, int seats, Passenger passenger)
         {
             Name = name;
+            Seats = seats;
             DateOfTheTour = dateOfTheTour;
             Passenger = passenger;
         }
 
 
-        public void CreateBooking(string _name, DateTime _dateOfTheTour, Passenger _passenger)
+        public void CreateBooking(string _name, DateTime _dateOfTheTour, int _seats, Passenger _passenger)
         {
-            
-            if (string.IsNullOrEmpty(_name) || _dateOfTheTour.Date == null || _passenger == null)
+            var tour = tourSchedule.listOfTour.FirstOrDefault(x => x.Name == _name);
+
+            if (string.IsNullOrEmpty(_name) || _dateOfTheTour.Date == null || _seats == 0 || _passenger == null)
             {
                 throw new NoneExistensExeption();
-            } 
+            }
+            if (tour.AvailableNumberOfSeats < _seats)
+            {
+                throw new NoneAvailableSeats();
+
+            }
             BookingSystem newBooking = new BookingSystem()
             {
                 name = _name,
                 dateOfTheTour = _dateOfTheTour.Date,
+                seats = _seats,
                 passenger = _passenger
             };
 

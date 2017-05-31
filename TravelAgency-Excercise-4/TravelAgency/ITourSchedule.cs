@@ -8,8 +8,9 @@ namespace TravelAgency
 {
     public interface ITourSchedule
     {
-        List<Tour> GetToursFor(DateTime inDateTime);
         void CreateTour(string name, DateTime dateOfTheTour, int availableNumberOfSeats);
+        List<Tour> GetToursFor(DateTime inDateTime);
+        List<Tour> listOfTour { get; set; }
 
     }
 }

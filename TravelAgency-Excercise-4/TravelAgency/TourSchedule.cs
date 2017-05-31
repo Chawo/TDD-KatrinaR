@@ -8,12 +8,18 @@ namespace TravelAgency
 {
     public class TourSchedule : ITourSchedule
     { 
-        private List<Tour> TourCalendar = new List<Tour>();
-         
+        public List<Tour> listOfTour { get; set; }
+
+        public TourSchedule()
+        {
+            listOfTour = new List<Tour>();
+        }
+
+
         public void CreateTour(string name, DateTime dateOfTheTour, int availableNumberOfSeats)
         {
 
-            var result = TourCalendar.Count(x => x.DateOfTheTour.Date == dateOfTheTour.Date);
+            var result = listOfTour.Count(x => x.DateOfTheTour.Date == dateOfTheTour.Date);
 
             if (result >= 3)
             {
@@ -28,7 +34,7 @@ namespace TravelAgency
                     AvailableNumberOfSeats = availableNumberOfSeats
                 };
 
-                TourCalendar.Add(newTour);
+                listOfTour.Add(newTour);
             }
 
 
@@ -36,7 +42,7 @@ namespace TravelAgency
 
         public List<Tour> GetToursFor(DateTime inDateTime)
         {
-            return TourCalendar.Where(x => x.DateOfTheTour.Date == inDateTime.Date).ToList();
+            return listOfTour.Where(x => x.DateOfTheTour.Date == inDateTime.Date).ToList();
         }
     }
 }

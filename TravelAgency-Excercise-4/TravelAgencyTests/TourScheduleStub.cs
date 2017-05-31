@@ -9,7 +9,12 @@ namespace TravelAgencyTests
 {
     public class TourScheduleStub : ITourSchedule
     {
-        public List<Tour> Tours = new List<Tour>();
+        public List<Tour> listOfTour { get; set; }
+
+        public TourScheduleStub()
+        {
+            listOfTour = new List<Tour>();
+        }
 
         public void CreateTour(string name, DateTime dateOfTheTour, int availableNumberOfSeats)
         {
@@ -25,7 +30,7 @@ namespace TravelAgencyTests
 
         public List<Tour> GetToursFor(DateTime inDateTime)
         {
-            return Tours;
+            return listOfTour;
         }
     }
 }

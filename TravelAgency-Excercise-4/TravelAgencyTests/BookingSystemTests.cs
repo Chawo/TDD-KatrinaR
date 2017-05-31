@@ -24,24 +24,15 @@ namespace TravelAgencyTests
         [Test]
         public void CanCreateBooking()
         {
-            //TourSchedule tour = new TourSchedule();
 
-            //var name = tour.Name = "Happy New Year";
-            //var dateOfTheTour = tour.DateOfTheTour = new DateTime(2017, 12, 9);
-            //var availableNumberOfSeats = tour.AvailableNumberOfSeats = 20;
-
-            //tourScheduleStub.CreateTour(name, dateOfTheTour, availableNumberOfSeats);
-
-            //tourScheduleStub.GetToursFor(new DateTime(2017,12,09));
-
-            tourScheduleStub.Tours.Add(new Tour { Name = "Happy New Year", DateOfTheTour = new DateTime(2012, 2, 12), AvailableNumberOfSeats = 20 });
+            tourScheduleStub.listOfTour.Add(new Tour { Name = "Happy New Year", DateOfTheTour = new DateTime(2012, 2, 12), AvailableNumberOfSeats = 20 });
 
             Passenger passenger = new Passenger() {
                 fname = "Katrina",
                 lname = "Rosales"
             };
 
-            sut.CreateBooking("Happy New Year", new DateTime(2012, 2, 12), passenger);
+            sut.CreateBooking("Happy New Year", new DateTime(2012, 2, 12), 10, passenger);
 
             var bookings = sut.GetBookingsFor(passenger);
 
@@ -62,14 +53,14 @@ namespace TravelAgencyTests
             };
 
            
-            Assert.Throws<NoneExistensExeption>(() => sut.CreateBooking("", new DateTime(), passenger));
+            Assert.Throws<NoneExistensExeption>(() => sut.CreateBooking("", new DateTime(), 0, passenger));
             
         }
 
         [Test]
         public void FullBookedTour()
         {
-            tourScheduleStub.Tours.Add(new Tour { Name = "VIP Safari", DateOfTheTour = new DateTime(2014, 2, 12), AvailableNumberOfSeats = 2 });
+            tourScheduleStub.listOfTour.Add(new Tour { Name = "VIP Safari", DateOfTheTour = new DateTime(2014, 2, 12), AvailableNumberOfSeats = 2 });
               
             Passenger passenger = new Passenger()
             {
@@ -77,7 +68,7 @@ namespace TravelAgencyTests
                 lname = "Anka"
             };
             
-            Assert.Throws<NoneAvailableSeats>(() => sut.CreateBooking("VIP Safari", new DateTime(2014, 2, 12), passenger));
+            Assert.Throws<NoneAvailableSeats>(() => sut.CreateBooking("VIP Safari", new DateTime(2014, 2, 12), 4, passenger));
 
         }
     }
